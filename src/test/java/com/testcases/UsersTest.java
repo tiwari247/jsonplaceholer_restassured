@@ -8,29 +8,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.models.User;
+import com.utilities.BaseClass;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
 
-public class UsersTest {
+public class UsersTest extends BaseClass {
 
 	@BeforeClass
-	void setup() throws FileNotFoundException, IOException {
-		
-		Properties properties = new Properties();
-		String configPath = System.getProperty("user.dir");
-		properties.load(new FileInputStream(configPath + "/src/test/java/config.properties"));
-		
-		PropertyConfigurator.configure(configPath + "/log4j.properties");
-		
-		RestAssured.baseURI = properties.get("url").toString();
+	void test() {
+//		LOGGER = Logger.getLogger(UsersTest.class);
+		//RestAssured.baseURI = url;
 	}
 	
 	@Test

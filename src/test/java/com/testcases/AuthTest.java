@@ -1,8 +1,12 @@
 package com.testcases;
 
 import static org.hamcrest.Matchers.*;
+
+import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import com.utilities.BaseClass;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -13,12 +17,13 @@ import static io.restassured.RestAssured.*;
 import java.math.MathContext;
 import java.util.HashMap;
 
-public class AuthTest {
+public class AuthTest extends BaseClass {
 	String token = "";
 	String userId = "";
 	String todoId = "";
 	@BeforeClass
-	void setup() {
+	void set() {
+//		LOGGER = Logger.getLogger(AuthTest.class);
 		RestAssured.baseURI = "https://fast-falls-92986.herokuapp.com/";
 	}
 	
@@ -49,7 +54,7 @@ public class AuthTest {
 		
 	}
 	
-	@Test(priority=2)
+//	@Test(priority=2)
 	void loginUser() {
 		
 		HashMap user = new HashMap();
@@ -74,7 +79,7 @@ public class AuthTest {
 		
 	}
 	
-	@Test(priority=3)
+//	@Test(priority=3)
 	void createTodo() {
 		
 		HashMap todo = new HashMap();
@@ -97,7 +102,7 @@ public class AuthTest {
 		todoId = response.jsonPath().get("_id");
 	}
 	
-	@Test(priority=3)
+//	@Test(priority=3)
 	void getSingleTodo() {
 		
 		given()
@@ -112,7 +117,7 @@ public class AuthTest {
 	
 	}
 	
-	@Test(priority=5)
+//	@Test(priority=5)
 	void deleteTodo() {
 		token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTU3N2ExMTcwMjZhOTAwMTVlMmQ2NDEiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTgyNzkxMTg1fQ.xAUL5De2dbxTECeieFCbfb7wQ5lO4RM_vVXDS6AnCZ4";
 		
@@ -126,7 +131,7 @@ public class AuthTest {
 			.log().all();
 	}
 	
-	@Test
+//	@Test
 	void deleteUser() {
 		
 		

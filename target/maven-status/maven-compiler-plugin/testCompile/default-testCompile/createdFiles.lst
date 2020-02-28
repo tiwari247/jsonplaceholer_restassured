@@ -1,0 +1,10 @@
+com\testcases\UsersTest.class
+com\utilities\ExtentReporterNG.class
+com\utilities\BaseClass.class
+com\models\Company.class
+com\testcases\PostsTest.class
+com\models\User.class
+com\testcases\AuthTest.class
+com\models\Post.class
+com\models\Geo.class
+com\models\Address.class

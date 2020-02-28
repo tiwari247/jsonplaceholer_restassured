@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.models.Post;
+import com.utilities.BaseClass;
 
 import static io.restassured.RestAssured.*;
 import io.restassured.RestAssured;
@@ -23,28 +24,26 @@ import io.restassured.response.Response;
 
 
 
-public class PostsTest {
+public class PostsTest extends BaseClass {
 	int id;
 	int userId;
-	private static Logger LOGGER = Logger.getLogger(PostsTest.class);
+	
 	@BeforeClass
-	void setup() throws FileNotFoundException, IOException {
+	void set() throws FileNotFoundException, IOException {
 		
-		Properties properties = new Properties();
-		String configPath = System.getProperty("user.dir");
-		properties.load(new FileInputStream(configPath + "/src/test/java/config.properties"));
-		
-		PropertyConfigurator.configure(configPath + "/log4j.properties");
-		
-		RestAssured.baseURI = properties.get("url").toString();
+//		LOGGER = Logger.getLogger(PostsTest.class);	
 		id = 1;
 		userId = 1;
+		System.out.println("PostsTest set() : "+RestAssured.baseURI);
+		//RestAssured.baseURI = url;
 //		RestAssured.useRelaxedHTTPSValidation();
 		LOGGER.info("New message logger");
 	}
 	
-//	@Test
+	@Test
 	void getAllPosts() {
+		
+		
 		
 		given()
 		.when()
@@ -55,7 +54,7 @@ public class PostsTest {
 			.log().all(true);
 	}
 	
-	//@Test
+	@Test
 	void getSinglePost() {
 		
 		given()
@@ -68,7 +67,7 @@ public class PostsTest {
 		
 	}
 	
-	//@Test
+	@Test
 	void getPostsThroughUserId() {
 		//using query param ?userId=1
 		
@@ -86,12 +85,15 @@ public class PostsTest {
 		
 		Post[] posts = response.as(Post[].class);
 		
-		Assert.assertEquals(posts.length, 9);
+		Assert.assertEquals(posts.length, 10);
 		
 	}
 	
 	@Test
 	void createNewPost() {
+		
+		System.out.println("Inside create post"+ RestAssured.baseURI);
+		
 		
 		Post newPost = new Post();
 		newPost.setId(500);
